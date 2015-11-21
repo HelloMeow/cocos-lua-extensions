@@ -1,0 +1,17 @@
+{
+	"c_repo_dir" : "/abs/path/to/git/repo",
+	"c_base_commit" : "sha value for a commit as base version",
+	"c_head_commit" : "HEAD",
+	"c_project_dir" : "/abs/path/to/save/files/and/project.manifest",
+	"c_version_dir" : "/abs/path/to/save/version.manifest",
+	"c_project_manifest_name" : "project.manifest",
+	"c_version_manifest_name" : "version.manifest",
+	"c_dir_0" : [
+		"res",
+		"src"
+	],
+	"c_package_url" : "http://host:port/update/files/",
+	"c_manifest_url" : "http://host:port/update/files/project.manifest",
+	"c_version_url" : "http://host:port/update/version/version.manifest",
+	"c_major_version" : "1"
+}
