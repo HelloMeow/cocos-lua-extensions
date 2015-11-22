@@ -21,8 +21,13 @@ local default_ssl_params =
     INPUT:
     * ssl_params
     * params
+
+
+    local AsyncTcp = require "AsyncTcp"
+    local atcp = AsyncTcp:ctor()
+    atcp:conn(params, onresp, ssl_params)
 ]]
-local _DBG = 5
+local _DBG = 4
 local logD = function(...)
     if _DBG >= 5 then
         hmlog.debug('AsyncTcp', ...)
@@ -32,6 +37,13 @@ local logI = function(...)
     if _DBG >= 4 then
         hmlog.debug('AsyncTcp', ...)
     end
+end
+
+function M:getInstance()
+    if not _atcp then
+        _atcp = M:ctor()
+    end
+    return _atcp
 end
 
 -- constants
@@ -412,7 +424,7 @@ function M:_setcallback(callback)
         self:__add_callback(callback_on_received, function(...)
                 hmlog.debug("onreceived")
                 uifunc.dispatchEvent('onReceiveDone', ...)
-                dispatcher:removeEventListener(istener_cb)
+                dispatcher:removeEventListener(listener_cb_)
             end)
     end
 end
