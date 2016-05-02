@@ -1,4 +1,6 @@
 local M = class("PriorQueue", require "Queue")
+local logd = require "hmlog".debug
+local DEBUG = 0
 
 function M:ctor()
     M.super.ctor(self)
@@ -15,6 +17,13 @@ function M:push(v)
         end
     end
     self:insertat(v, k)
+    if DEBUG>0 then logd("PriorQueue:push "..v.." at "..k, "first:"..self.f_, "last:"..self.l_, "size:"..self:size(), self.q_) end
+end
+
+function M:pop()
+    local v = M.super.pop(self)
+    if DEBUG>0 then logd("PriorQueue:pop ",v, "first:"..self.f_, "last:"..self.l_, "size:"..self:size(), self.q_) end
+    return v
 end
 
 function M:insertat(v, i)
